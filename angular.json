@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "projects": {
+    "to-do": {
+      "projectType": "application",
+      "root": "apps/to-do",
+      "sourceRoot": "apps/to-do/src",
+      "prefix": "first-monorepo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/to-do",
+            "index": "apps/to-do/src/index.html",
+            "main": "apps/to-do/src/main.ts",
+            "polyfills": "apps/to-do/src/polyfills.ts",
+            "tsConfig": "apps/to-do/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/to-do/src/favicon.ico", "apps/to-do/src/assets"],
+            "styles": ["apps/to-do/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/to-do/src/environments/environment.ts",
+                  "with": "apps/to-do/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "to-do:build:production"
+            },
+            "development": {
+              "browserTarget": "to-do:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "to-do:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/to-do/src/**/*.ts",
+              "apps/to-do/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/to-do"],
+          "options": {
+            "jestConfig": "apps/to-do/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "to-do-e2e": {
+      "root": "apps/to-do-e2e",
+      "sourceRoot": "apps/to-do-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/to-do-e2e/cypress.json",
+            "devServerTarget": "to-do:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "to-do:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/to-do-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["to-do"]
+    }
+  }
+}
