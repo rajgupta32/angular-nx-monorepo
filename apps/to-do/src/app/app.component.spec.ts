@@ -29,4 +29,12 @@ describe('AppComponent', () => {
       'Welcome to-do'
     );
   });
+
+  it(`should have my name`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.name).toBe('Rajan Gupta');
+  });
 });
+
+

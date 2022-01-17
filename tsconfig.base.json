@@ -8,13 +8,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "module": "esnext",
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@first-monorepo/data": ["libs/data/src/index.ts"],
+      "@first-monorepo/utility": ["libs/utility/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
