@@ -8,14 +8,14 @@ import { Todo } from '@first-monorepo/data';
   <div class="container">
     <div class="remote-entry">
       <h1>Micro FrontEnd-1</h1>
-      <h2 style="text-align: center;">Todo's Remote Entry Component</h2>
+      <p style="text-align: center; font-size: 1.5rem">Todo's Remote Entry Component</p>
     </div>
     <div class="to-do">
-      <h1 style="text-align:'center'"><strong>Welcome Todo</strong></h1>
+      <p class="greet"><strong>Welcome Todo</strong></p>
       <first-monorepo-todos [todos]="todos"></first-monorepo-todos>
       <button id="add-todo" (click)="addTodo()">Add Todo</button>
     </div>
-  </div>`,
+  </div>`,  
   styles: [
     `
     .container {
@@ -27,8 +27,8 @@ import { Todo } from '@first-monorepo/data';
       .remote-entry {
         padding: 5px;
       }
-      h1 {
-        font-size: 2rem;
+      .greet {
+        font-size: 1.5rem;
         text-align: center;
         padding:15px;
       

@@ -12,9 +12,11 @@ import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { UtilityModule } from '@first-monorepo/utility';
 
+
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, HttpClientModule, UtilityModule],
+  imports: [BrowserModule, HttpClientModule, RemoteEntryModule, UtilityModule],
+  exports: [RemoteEntryModule],
   providers: [],
   bootstrap: [AppComponent],
 })

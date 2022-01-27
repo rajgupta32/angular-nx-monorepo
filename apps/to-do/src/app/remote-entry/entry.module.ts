@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
       },
     ]),
   ],
+  exports: [RemoteEntryComponent],
   providers: [],
 })
 export class RemoteEntryModule {}

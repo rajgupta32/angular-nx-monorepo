@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Todo } from '@first-monorepo/data';
+import { ToDoService } from './services/to-do.service';
 
 
 @Component({
@@ -14,18 +14,18 @@ export class AppComponent {
 
   todos: Todo[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private todoService: ToDoService) {
     this.getTodo();
   }
 
   getTodo() {
-    this.http.get<Todo[]>('/api/todos').subscribe((data)=> {
+    this.todoService.getTodo().subscribe((data:Todo[])=> {
       this.todos = data;
     })
   }
 
   addTodo() {
-    this.http.post('/api/addTodo', {}).subscribe(()=> {
+    this.todoService.addTodo({}).subscribe(()=> {
       this.getTodo();
     })
     // this.todos.push({
